@@ -112,17 +112,128 @@ drwxr-xr-x   1 root root 4096 May 13 00:00 var
 ## 미니콘다3을 이용한 텐서플로우 설치
 (base) root@cd9a75b10adf:~# conda install tensorflow
 
+Channels:
+ - defaults
+Platform: linux-aarch64
+Collecting package metadata (repodata.json): done
+Solving environment: - warning  libmamba Added empty dependency for problem type SOLVER_RULE_UPDATE
+failed
+LibMambaUnsatisfiableError: Encountered problems while solving:
+  - package tensorflow-2.10.0-eigen_py310hcf376f6_0 requires python 3.10.*, but none of the providers can be installed
+Could not solve for environment specs
+The following packages are incompatible
+├─ pin-1 is installable and it requires
+│  └─ python 3.12.* , which can be installed;
+└─ tensorflow is not installable because there are no viable options
+   ├─ tensorflow [2.10.0|2.11.0|2.12.0|2.8.2|2.9.1] would require
+   │  └─ python 3.10.* , which conflicts with any installable versions previously reported;
+   ├─ tensorflow [2.10.0|2.5.0|2.8.2|2.9.1] would require
+   │  └─ python 3.7.* , which conflicts with any installable versions previously reported;
+   ├─ tensorflow [2.10.0|2.11.0|...|2.9.1] would require
+   │  └─ python 3.8.* , which conflicts with any installable versions previously reported;
+   ├─ tensorflow [2.10.0|2.11.0|...|2.9.1] would require
+   │  └─ python 3.9.* , which conflicts with any installable versions previously reported;
+   └─ tensorflow 2.12.0 would require
+      └─ python 3.11.* , which conflicts with any installable versions previously reported.
 
+## 텐서플로우 설치할 때 위와 같이 파이선 버젼 변경 필요시
+(base) root@cd9a75b10adf:~# conda search python
+...
+(base) root@cd9a75b10adf:~# conda install python=3.11.9
+...
+(base) root@cd9a75b10adf:~# conda install tensorflow
+...
 
+---------------------------------------------------------------------------------------------------------------------------------------
 
+## IPython 실행
+(base) root@cd9a75b10adf:~# pip install ipython
+...
 
+## IPython 실행
+(base) root@cd9a75b10adf:~# ipython
 
+Python 3.11.5 (main, Sep 11 2023, 13:18:50) [GCC 11.2.0]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 8.25.0 -- An enhanced Interactive Python. Type '?' for help.
 
+In [1]: 
 
+## 텐서 플로우가 정상적으로 작동되는지 확인
+In [1]: import tensorflow as tf
 
+In [2]: 
 
+## IPython 종료
+In [1]: exit
 
+---------------------------------------------------------------------------------------------------------------------------------------
 
+## Jupyter Notebook 설치
+(base) root@cd9a75b10adf:~# pip install jupyter notebook
+...
 
+## Jupyter Notebook 실행
+(base) root@cd9a75b10adf:~# jupyter notebook
 
+[I 2024-06-01 09:59:02.863 ServerApp] jupyter_lsp | extension was successfully linked.
+[I 2024-06-01 09:59:02.864 ServerApp] jupyter_server_terminals | extension was successfully linked.
+[I 2024-06-01 09:59:02.866 ServerApp] jupyterlab | extension was successfully linked.
+[I 2024-06-01 09:59:02.868 ServerApp] notebook | extension was successfully linked.
+[I 2024-06-01 09:59:02.869 ServerApp] Writing Jupyter server cookie secret to /root/.local/share/jupyter/runtime/jupyter_cookie_secret
+[I 2024-06-01 09:59:02.963 ServerApp] notebook_shim | extension was successfully linked.
+[I 2024-06-01 09:59:02.969 ServerApp] notebook_shim | extension was successfully loaded.
+[I 2024-06-01 09:59:02.970 ServerApp] jupyter_lsp | extension was successfully loaded.
+[I 2024-06-01 09:59:02.970 ServerApp] jupyter_server_terminals | extension was successfully loaded.
+[I 2024-06-01 09:59:02.971 LabApp] JupyterLab extension loaded from /opt/conda/lib/python3.11/site-packages/jupyterlab
+[I 2024-06-01 09:59:02.971 LabApp] JupyterLab application directory is /opt/conda/share/jupyter/lab
+[I 2024-06-01 09:59:02.971 LabApp] Extension Manager is 'pypi'.
+[I 2024-06-01 09:59:02.976 ServerApp] jupyterlab | extension was successfully loaded.
+[I 2024-06-01 09:59:02.977 ServerApp] notebook | extension was successfully loaded.
+[C 2024-06-01 09:59:02.977 ServerApp] Running as root is not recommended. Use --allow-root to bypass.
 
+(base) root@cd9a75b10adf:~# jupyter notebook --allow-root
+
+[I 2024-06-01 10:00:43.279 ServerApp] jupyter_lsp | extension was successfully linked.
+[I 2024-06-01 10:00:43.280 ServerApp] jupyter_server_terminals | extension was successfully linked.
+[I 2024-06-01 10:00:43.282 ServerApp] jupyterlab | extension was successfully linked.
+[I 2024-06-01 10:00:43.284 ServerApp] notebook | extension was successfully linked.
+[I 2024-06-01 10:00:43.374 ServerApp] notebook_shim | extension was successfully linked.
+[I 2024-06-01 10:00:43.380 ServerApp] notebook_shim | extension was successfully loaded.
+[I 2024-06-01 10:00:43.381 ServerApp] jupyter_lsp | extension was successfully loaded.
+[I 2024-06-01 10:00:43.381 ServerApp] jupyter_server_terminals | extension was successfully loaded.
+[I 2024-06-01 10:00:43.382 LabApp] JupyterLab extension loaded from /opt/conda/lib/python3.11/site-packages/jupyterlab
+[I 2024-06-01 10:00:43.382 LabApp] JupyterLab application directory is /opt/conda/share/jupyter/lab
+[I 2024-06-01 10:00:43.382 LabApp] Extension Manager is 'pypi'.
+[I 2024-06-01 10:00:43.386 ServerApp] jupyterlab | extension was successfully loaded.
+[I 2024-06-01 10:00:43.388 ServerApp] notebook | extension was successfully loaded.
+[I 2024-06-01 10:00:43.388 ServerApp] Serving notebooks from local directory: /
+[I 2024-06-01 10:00:43.388 ServerApp] Jupyter Server 2.14.1 is running at:
+[I 2024-06-01 10:00:43.388 ServerApp] http://localhost:8888/tree?token=76061ac1a3fa4b845539d4244da874a0dc69dcb8ca3e2020
+[I 2024-06-01 10:00:43.388 ServerApp]     http://127.0.0.1:8888/tree?token=76061ac1a3fa4b845539d4244da874a0dc69dcb8ca3e2020
+[I 2024-06-01 10:00:43.388 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[W 2024-06-01 10:00:43.390 ServerApp] No web browser found: Error('could not locate runnable browser').
+[C 2024-06-01 10:00:43.390 ServerApp] 
+    To access the server, open this file in a browser:
+        file:///root/.local/share/jupyter/runtime/jpserver-1428-open.html
+    Or copy and paste one of these URLs:
+        http://localhost:8888/tree?token=76061ac1a3fa4b845539d4244da874a0dc69dcb8ca3e2020
+        http://127.0.0.1:8888/tree?token=76061ac1a3fa4b845539d4244da874a0dc69dcb8ca3e2020
+[I 2024-06-01 10:00:43.396 ServerApp] Skipped non-installed server(s): bash-language-server, dockerfile-language-server-nodejs, javascript-typescript-langserver, jedi-language-server, julia-language-server, pyright, python-language-server, python-lsp-server, r-languageserver, sql-language-server, texlab, typescript-language-server, unified-language-server, vscode-css-languageserver-bin, vscode-html-languageserver-bin, vscode-json-languageserver-bin, yaml-language-server
+
+## 브라우저에서 Jupyter Notebook 서버에 접속
+http://localhost:8888/tree?token=76061ac1a3fa4b845539d4244da874a0dc69dcb8ca3e2020
+http://127.0.0.1:8888/tree?token=76061ac1a3fa4b845539d4244da874a0dc69dcb8ca3e2020
+
+## Jupyter Notebook 종료
+-> raise keybaord interreuption
+
+^C[I 2024-06-01 10:10:12.877 ServerApp] interrupted
+[I 2024-06-01 10:10:12.879 ServerApp] Serving notebooks from local directory: /
+    0 active kernels
+    Jupyter Server 2.14.1 is running at:
+    http://localhost:8888/tree?token=76061ac1a3fa4b845539d4244da874a0dc69dcb8ca3e2020
+        http://127.0.0.1:8888/tree?token=76061ac1a3fa4b845539d4244da874a0dc69dcb8ca3e2020
+Shut down this Jupyter server (y/[n])? y
+[C 2024-06-01 10:10:15.720 ServerApp] Shutdown confirmed
+[I 2024-06-01 10:10:15.722 ServerApp] Shutting down 5 extension
