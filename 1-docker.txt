@@ -1,0 +1,46 @@
+## 윈도우, 맥, 우분투 Docker 설치
+... 각자 실행 ...
+
+## Docker 실행
+$ docker run --help
+
+$ docker run hello-world
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (arm64v8)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+## 파이선 팩키지(SciPy, NumPy, SciKit-Learn 등) 설치를 위한 MiniConda3 이미지 다운로드
+$ docker pull continuumio/miniconda3
+
+Using default tag: latest
+latest: Pulling from continuumio/miniconda3
+Digest: sha256:e5caba159335ca9cc9d7c78167d8b46283aa56fcc53ae9ffcab2a54e09000329
+Status: Image is up to date for continuumio/miniconda3:latest
+docker.io/continuumio/miniconda3:latest
+
+## MiniConda3 실행
+$ docker run -i -t continuumio/miniconda3 /bin/bash
+
+(base) root@e5e4012cdfd1:/#
+
+## Python(MiniConda3)이 리눅스환경에 설치되었음을 확인
+(base) root@e5e4012cdfd1:/# python --version
+Python 3.12.3
+
+## 다시 로컬 환경으로 돌아가는 실행
+(base) root@e5e4012cdfd1:/# exit
+exit
