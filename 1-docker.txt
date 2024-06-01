@@ -146,11 +146,11 @@ The following packages are incompatible
 
 ---------------------------------------------------------------------------------------------------------------------------------------
 
-## IPython 실행
+## IPython Shell 설치
 (base) root@cd9a75b10adf:~# pip install ipython
 ...
 
-## IPython 실행
+## IPython Shell 실행
 (base) root@cd9a75b10adf:~# ipython
 
 Python 3.11.5 (main, Sep 11 2023, 13:18:50) [GCC 11.2.0]
