@@ -1,4 +1,4 @@
-## 윈도우, 맥, 우분투 Docker 설치
+## 윈도우, 맥, 우분투 운영체재 별 Docker 설치
 ... 각자 실행 ...
 
 ## Docker 실행
@@ -32,15 +32,97 @@ Digest: sha256:e5caba159335ca9cc9d7c78167d8b46283aa56fcc53ae9ffcab2a54e09000329
 Status: Image is up to date for continuumio/miniconda3:latest
 docker.io/continuumio/miniconda3:latest
 
-## MiniConda3 실행
+## 다운로드된 Docker Image 실행
 $ docker run -i -t continuumio/miniconda3 /bin/bash
-
 (base) root@e5e4012cdfd1:/#
+
+## 실행되는 Docker Image의 운영체제 확인
+(base) root@e5e4012cdfd1:/# uname -a
+Linux 62824b3233c6 6.6.26-linuxkit #1 SMP Sat Apr 27 04:13:19 UTC 2024 aarch64 GNU/Linux
 
 ## Python(MiniConda3)이 리눅스환경에 설치되었음을 확인
 (base) root@e5e4012cdfd1:/# python --version
 Python 3.12.3
 
-## 다시 로컬 환경으로 돌아가는 실행
+## 로컬 환경으로 돌아가는 실행
 (base) root@e5e4012cdfd1:/# exit
 exit
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+## 다시 Docker Image 실행
+$ docker run -i -t continuumio/miniconda3 /bin/bash
+
+## 추가적으로 필요한 파이선 모듈 설치
+(base) root@62824b3233c6:/# pip install beautifulsoup4 requests
+
+## 사용했던 환경을 저장
+(base) root@e5e4012cdfd1:/# exit
+exit
+
+$ docker ps -a
+CONTAINER ID   IMAGE                    COMMAND       CREATED             STATUS                         PORTS     NAMES
+62824b3233c6   continuumio/miniconda3   "/bin/bash"   6 minutes ago       Up 23 seconds                            friendly_lalande
+a6b5a8d3bfc9   hello-world              "/hello"      About an hour ago   Exited (0) About an hour ago             infallible_lumiere
+
+                    <id>     <name(:tag)>
+$ docker commit 62824b3233c6 mlp:init (default - :latest)
+sha256:d8dd68359075bf7a249d0f7be78d69b0f14c91e2f9aa9935a587d6de15776b70
+
+$ docker images
+REPOSITORY                    TAG       IMAGE ID       CREATED          SIZE
+mlp                           init      e224831caee1   8 seconds ago    552MB
+continuumio/miniconda3        latest    14adfdd8fbe7   2 days ago       550MB
+hello-world                   latest    ee301c921b8a   13 months ago    9.14kB
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+## (로컬) 운영체제 환경과 (다커 이미지) 가상 환경은 서로 독립된 별개의 환경이므로,
+로컬에서 작성한 파일을 가상 환경에 마운트해야 가상 환경에서 작성한 파일에 접근할 수 있음
+
+윈도우
+$ docker run -i -t -v $HOME/mlwork:/mlwork mlp:init /bin/bash 
+맥
+$ docker run -i -t -v /Users/charlie/Documents/mlwork:/mlwork mlp:init /bin/bash 
+(base) root@cd9a75b10adf:~#
+
+## 폴더가 마운트 되었는지 확인
+(base) root@cd9a75b10adf:~# ls -l
+
+lrwxrwxrwx   1 root root    7 May 13 00:00 bin -> usr/bin
+drwxr-xr-x   2 root root 4096 Jan 28 21:20 boot
+drwxr-xr-x   5 root root  360 Jun  1 04:48 dev
+drwxr-xr-x   1 root root 4096 Jun  1 04:48 etc
+drwxr-xr-x   2 root root 4096 Jan 28 21:20 home
+lrwxrwxrwx   1 root root    7 May 13 00:00 lib -> usr/lib
+drwxr-xr-x   2 root root 4096 May 13 00:00 media
+drwxr-xr-x   2 root root   64 Jun  1 04:38 mlwork           <====== !
+drwxr-xr-x   2 root root 4096 May 13 00:00 mnt
+drwxr-xr-x   1 root root 4096 May 29 18:04 opt
+dr-xr-xr-x 224 root root    0 Jun  1 04:48 proc
+drwx------   1 root root 4096 Jun  1 04:03 root
+drwxr-xr-x   1 root root 4096 May 29 18:03 run
+lrwxrwxrwx   1 root root    8 May 13 00:00 sbin -> usr/sbin
+drwxr-xr-x   2 root root 4096 May 13 00:00 srv
+dr-xr-xr-x  11 root root    0 Jun  1 04:48 sys
+drwxrwxrwt   1 root root 4096 Jun  1 04:03 tmp
+drwxr-xr-x   1 root root 4096 May 13 00:00 usr
+drwxr-xr-x   1 root root 4096 May 13 00:00 var
+
+## 미니콘다3을 이용한 텐서플로우 설치
+(base) root@cd9a75b10adf:~# conda install tensorflow
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
