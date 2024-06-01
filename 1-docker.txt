@@ -223,7 +223,9 @@ In [1]: exit
 
 ## 브라우저에서 Jupyter Notebook 서버에 접속
 http://localhost:8888/tree?token=76061ac1a3fa4b845539d4244da874a0dc69dcb8ca3e2020
+또는
 http://127.0.0.1:8888/tree?token=76061ac1a3fa4b845539d4244da874a0dc69dcb8ca3e2020
+클릭
 
 ## Jupyter Notebook 종료
 -> raise keybaord interreuption
@@ -237,3 +239,11 @@ http://127.0.0.1:8888/tree?token=76061ac1a3fa4b845539d4244da874a0dc69dcb8ca3e202
 Shut down this Jupyter server (y/[n])? y
 [C 2024-06-01 10:10:15.720 ServerApp] Shutdown confirmed
 [I 2024-06-01 10:10:15.722 ServerApp] Shutting down 5 extension
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+... ?
+$ docker run -i -t -p 8888:8888 mlp:init
+... ?
+(base) root@cd9a75b10adf:~# jupyter notebook --allow-root
+... ?
